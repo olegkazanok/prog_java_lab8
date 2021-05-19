@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import entity.ChatMessage;
 
-
 @WebServlet(name = "MessageListServlet")
 public class MessageListServlet extends ChatServlet {
+
     private static final long serialVersionUID = 1L;
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Установить кодировку HTTP-ответа UTF-8
