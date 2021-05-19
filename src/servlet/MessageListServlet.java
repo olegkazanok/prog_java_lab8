@@ -15,11 +15,14 @@ public class MessageListServlet extends ChatServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Установить кодировку HTTP-ответа UTF-8
         response.setCharacterEncoding("utf8");
+
         // Получить доступ к потокувыводаHTTP-ответа
         PrintWriter pw = response.getWriter();
+
         // Записть в потокHTML-разметку страницы
         pw.println("<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'/><meta http-equiv='refresh' content='10'></head>");
         pw.println("<body>");
+
         // ВобратномпорядкезаписатьвпотокHTML-разметкудлякаждогосообщения
         for(int i=messages.size()-1; i>=0; i--) {
             ChatMessage aMessage = messages.get(i);
@@ -30,7 +33,8 @@ public class MessageListServlet extends ChatServlet {
             } else {
                 pw.println("<div><strong>"+ aMessage.getAuthor().getName() + "</strong>: "+ aMessage.getMessage() +  "</div>");
             }
-        }//"</strong>: "+ aMessage.getTimestamp()+"
+        }
+        //"</strong>: "+ aMessage.getTimestamp()+"
         pw.println("</body></html>");
     }
 }

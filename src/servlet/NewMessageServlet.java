@@ -22,8 +22,10 @@ public class NewMessageServlet extends ChatServlet {
         // передаѐмданныевкодировкеUTF-8//
         // то необходимо установить соответствующую кодировкуHTTP-запроса
         request.setCharacterEncoding("UTF-8");
+
         // ИзвлечьизHTTP-запросапараметр'message'
         String message = (String)request.getParameter("message");
+
         // Если сообщение не пустое, то
         int k = 0;
         long z = 0;
@@ -50,7 +52,6 @@ public class NewMessageServlet extends ChatServlet {
             }
             System.out.println("------------------------ ");
 
-
             author.setTimelast(timelast);
             if(k >= 2 && z <= time_permissible){
                 String systemMessage = " Извините, но вы привысили лимит сообщений ";
@@ -58,17 +59,14 @@ public class NewMessageServlet extends ChatServlet {
                     ChatMessage str = new ChatMessage(systemMessage, author, Calendar.getInstance().getTimeInMillis());
                     messages.add(str);
                 }
-            }
-            else {
+            } else {
                 synchronized(messages) {
                     // Добавить всписок сообщений новое
                     messages.add(new ChatMessage(message, author, Calendar.getInstance().getTimeInMillis()));
                 }
             }
-
         }
         // Перенаправитьпользователянастраницусформойсообщения
         response.sendRedirect("/Laba8/compose_message.jsp");
     }
 }
-
